@@ -31,18 +31,32 @@ async function getFactsForFavNum() {
 
 getFactsForFavNum();
 
-async function shuffleAndDraw() {
-  const resp = await axios({
+
+
+
+async function draw(){
+  const resp2 = await axios({
     baseURL: CARDS_URL,
-    url: "deck/new/draw/",
+    url: "deck/aq5hvfx4xq0r/draw/",
     method: "GET",
     params: {"count": 1}
   });
-  const card = resp.data.cards[0];
-  const cardVal = card.value;
-  const cardSuit = card.suit;
+  const card2 = resp2.data.cards[0];
+  const cardVal2 = card2.value;
+  const cardSuit2 = card2.suit;
+  console.log(`${cardVal2} of ${cardSuit2}`);
 
-  console.log(`${cardVal} of ${cardSuit}`);
+  $("#card-deck").append(`<div>${cardVal2} of ${cardSuit2}</div>`)
+
+
 }
 
-shuffleAndDraw();
+
+
+
+
+
+$("#get-card").on("submit",async function (evt){
+  evt.preventDefault();
+  await draw();
+})
